@@ -1,6 +1,6 @@
 from colorama import Fore, Style
 import click
-import subprocess
+import os
 from docker import docker_text
 from dockerignore import dockerignore_text
 from gitignore import gitignore_text
@@ -22,19 +22,18 @@ def create_files(project_name : str):
 
     with open('.dockerignore', 'w') as dockerignore:
         dockerignore.write(dockerignore_text)
-            
-    print_finish("Created all the docker neccessary files")
+        print_finish("Created all the docker neccessary files")
         
     # create the git files
     with open('.gitignore', 'w') as gitignore:
         gitignore.write(gitignore_text)
-    subprocess.run('git init .')
-    print_finish('Initialized git')
+        os.system('git init .')
+        print_finish('Initialized git')
         
     # Adding markdown files
     with open('LICENSE.md', 'w') as license:
         license.write(license_text)
-    print_finish('Added GNU license')
+        print_finish('Added GNU license')
         
     with open('README.md', 'w') as readme:
         readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
@@ -45,21 +44,25 @@ def create_files(project_name : str):
     with open('main.py', 'w') as mainfile:
         mainfile.write(mainfile_text)
         
-    subprocess.run('touch requirements.txt')
+    os.system('touch requirements.txt')
     print_finish("Added python default files")
-        
+    
+    # add test folder for test files
+    os.system('mkdir test')      
 
 @click.command('create-project')
 @click.argument('project-name')
 def main(project_name : str) :
     """Generate a python project with default files setup"""
+    os.system(f'mkdir {project_name} && cd {project_name}')
+    
     create_files(project_name)
-    subprocess.run('git add .')
-    subprocess.run(f'git commit -m "Initialize {project_name} project"')
+    os.system('git add .')
+    os.system(f'git commit -m "Initialize {project_name} project"')
     print_finish('Commited changes')
     print_finish('Initializing your virtual environment')
-    subprocess.run('pipenv --python 3.8')
-    subprocess.run('pipenv shell')
+    os.system('pipenv --python 3.8')
+    os.system('pipenv shell')
 
 if __name__ == '__main__':
     main()
