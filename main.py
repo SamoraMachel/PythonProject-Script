@@ -4,6 +4,7 @@ import subprocess
 
 TICK_SYMBOL = "\u2714"
 
+
 # finish message to display in the terminal
 def print_finish(message : str):
     print(Fore.LIGHTGREEN_EX(f"{TICK_SYMBOL} {message}" ))
@@ -29,7 +30,7 @@ def create_files(project_name : str):
         subprocess.run('git init .')
         print_finish('Initialized git')
         
-    # Addin markdown files
+    # Adding markdown files
     with open('./license.txt', 'r') as license_file:
         with open('LICENSE.md', 'w') as license:
             license.writelines(license_file.readlines())
@@ -37,8 +38,24 @@ def create_files(project_name : str):
         
     with open('README.md', 'w') as readme:
         readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
-    print_finish("Added a README file")
+        print_finish("Added a README file")
+        
+    
+    # Adding python related files
+    with open('./main.txt', 'w') as main_data_file:
+        with open('main.py', 'w') as mainfile:
+            mainfile.writelines(main_data_file.readlines())
+        
+    subprocess.run('touch requirements.txt')
+    print_finish("Added python default files")
+        
     
 @click.argument('project-name')
 def main(project : str) :
     create_files(project)
+    subprocess.run('git add .')
+    subprocess.run(f'git commit -m "Initialize {project} project"')
+    print_finish('Commited changes')
+    print_finish('Initializing your virtual environment')
+    subprocess.run('pipenv --python 3.8')
+    subprocess.run('pipenv shell')
