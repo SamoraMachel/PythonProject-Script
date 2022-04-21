@@ -1,3 +1,4 @@
+gitignore_text = """
 # virtual environments folders
 
 bin/**
@@ -14,4 +15,5 @@ lib/**
 # log files
 
 *.log
+"""
 

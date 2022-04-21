@@ -1,6 +1,11 @@
 from colorama import Fore, Style
 import click
 import subprocess
+from docker import docker_text
+from dockerignore import dockerignore_text
+from gitignore import gitignore_text
+from license import license_text
+from mainfile import mainfile_text
 
 TICK_SYMBOL = "\u2714"
 
@@ -12,29 +17,24 @@ def print_finish(message : str):
 def create_files(project_name : str):
     # create the necessary files
     # create the docker files
-    with open('./docker.txt', 'r') as docker_file:
-        with open('Dockerfile', 'w') as docker:
-            docker.writelines(docker_file.readlines())
-        
+    with open('Dockerfile', 'w') as docker:
+        docker.write(docker_text)
 
-    with open('./dockerignore.txt', 'r') as docker_ignore_file:
-        with open('.dockerignore', 'w') as dockerignore:
-            dockerignore.writelines(docker_ignore_file.readlines(0))
+    with open('.dockerignore', 'w') as dockerignore:
+        dockerignore.write(dockerignore_text)
             
     print_finish("Created all the docker neccessary files")
         
     # create the git files
-    with open('./gitignore.txt', 'r') as git_file:
-        with open('.gitignore', 'w') as gitignore:
-            gitignore.writelines(git_file.readlines())
-        subprocess.run('git init .')
-        print_finish('Initialized git')
+    with open('.gitignore', 'w') as gitignore:
+        gitignore.write(gitignore_text)
+    subprocess.run('git init .')
+    print_finish('Initialized git')
         
     # Adding markdown files
-    with open('./license.txt', 'r') as license_file:
-        with open('LICENSE.md', 'w') as license:
-            license.writelines(license_file.readlines())
-        print_finish('Added GNU license')
+    with open('LICENSE.md', 'w') as license:
+        license.write(license_text)
+    print_finish('Added GNU license')
         
     with open('README.md', 'w') as readme:
         readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
@@ -42,20 +42,24 @@ def create_files(project_name : str):
         
     
     # Adding python related files
-    with open('./main.txt', 'w') as main_data_file:
-        with open('main.py', 'w') as mainfile:
-            mainfile.writelines(main_data_file.readlines())
+    with open('main.py', 'w') as mainfile:
+        mainfile.write(mainfile_text)
         
     subprocess.run('touch requirements.txt')
     print_finish("Added python default files")
         
-    
+
+@click.command('create-project')
 @click.argument('project-name')
-def main(project : str) :
-    create_files(project)
+def main(project_name : str) :
+    """Generate a python project with default files setup"""
+    create_files(project_name)
     subprocess.run('git add .')
-    subprocess.run(f'git commit -m "Initialize {project} project"')
+    subprocess.run(f'git commit -m "Initialize {project_name} project"')
     print_finish('Commited changes')
     print_finish('Initializing your virtual environment')
     subprocess.run('pipenv --python 3.8')
     subprocess.run('pipenv shell')
+
+if __name__ == '__main__':
+    main()
