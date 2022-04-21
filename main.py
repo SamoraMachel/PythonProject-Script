@@ -12,7 +12,7 @@ TICK_SYMBOL = "\u2714"
 
 # finish message to display in the terminal
 def print_finish(message : str):
-    print(Fore.LIGHTGREEN_EX(f"{TICK_SYMBOL} {message}" ))
+    print(Fore.LIGHTGREEN_EX + (f"{TICK_SYMBOL} {message}"))
 
 def create_files(project_name : str):
     # create the necessary files
