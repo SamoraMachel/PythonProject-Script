@@ -1,6 +1,7 @@
 from colorama import Fore, Style
 import click
 import os
+from pyfiglet import Figlet
 from docker import docker_text
 from dockerignore import dockerignore_text
 from gitignore import gitignore_text
@@ -54,15 +55,22 @@ def create_files(project_name : str):
 @click.argument('project-name')
 def main(project_name : str) :
     """Generate a python project with default files setup"""
-    os.system(f'mkdir {project_name} && cd {project_name}')
-    
+    os.system(f'mkdir {project_name}')
+    os.chdir(project_name)
+    # if(os.path.exists(os.path.join(os.getcwd(), project_name))):
     create_files(project_name)
     os.system('git add .')
     os.system(f'git commit -m "Initialize {project_name} project"')
+    os.system('git branch -m main')
     print_finish('Commited changes')
     print_finish('Initializing your virtual environment')
-    os.system('pipenv --python 3.8')
+    os.system('pipenv --python 3')
     os.system('pipenv shell')
+    
+    f = Figlet(font='slant')
+    print(Fore.YELLOW + f.renderText(f'{project_name} CREATED'))
+    
+    
 
 if __name__ == '__main__':
     main()
