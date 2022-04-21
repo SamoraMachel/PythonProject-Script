@@ -64,11 +64,13 @@ def main(project_name : str) :
     os.system('git branch -m main')
     print_finish('Commited changes')
     print_finish('Initializing your virtual environment')
-    os.system('pipenv --python 3')
+    os.system('pipenv --python3')
+    f = Figlet(font='slant')
+    print(Fore.YELLOW + f.renderText(f'created {project_name}'))
     os.system('pipenv shell')
     
-    f = Figlet(font='slant')
-    print(Fore.YELLOW + f.renderText(f'{project_name} CREATED'))
+    
+
     
     
 
