@@ -1,0 +1,6 @@
+# git files
+.git
+.gitignore
+
+# markdown files
+*.md
