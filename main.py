@@ -1,2 +1,1 @@
 import colorama
-import pyfiglet
