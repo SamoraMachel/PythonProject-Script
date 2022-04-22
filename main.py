@@ -21,16 +21,6 @@ def print_finish(message : str):
     print(Fore.WHITE, end="")
 
 def create_files(project_name : str):
-    # create the necessary files
-    # create the docker files
-    with open('Dockerfile', 'w') as docker:
-        docker.write(docker_text)
-
-    with open('.dockerignore', 'w') as dockerignore:
-        dockerignore.write(dockerignore_text)
-        print_finish("Created all the docker neccessary files")
-        
-        
     # Adding markdown files
     with open('LICENSE.md', 'w') as license:
         license.write(license_text)
@@ -40,13 +30,33 @@ def create_files(project_name : str):
         readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
         print_finish("Added a README file")
         
+
     
+# configure working directory
+def workingdir() :
+    os.system('touch requirements.txt')
+    os.mkdir(os.path.join(BASE_PATH, "src"))
+    os.chdir(os.path.join(BASE_PATH, "src"))
+    
+    os.system("touch __init__.py")
     # Adding python related files
     with open('main.py', 'w') as mainfile:
         mainfile.write(mainfile_text)
         
-    os.system('touch requirements.txt')
     print_finish("Added python default files")
+
+   
+# script for dockerizing our application
+def dockerize() :
+    # create the necessary files
+    # create the docker files
+    with open('Dockerfile', 'w') as docker:
+        docker.write(docker_text)
+
+    with open('.dockerignore', 'w') as dockerignore:
+        dockerignore.write(dockerignore_text)
+        print_finish("Created all the docker neccessary files")
+     
     
 def testing():
     # add test folder for test files
@@ -55,6 +65,7 @@ def testing():
     os.system('touch __init__.py')
     with open('test.py', 'w') as testfile:
         testfile.write(test_text)
+    print_finish("Added testing support")
    
 
 # code to allow our project to be installable
@@ -67,6 +78,7 @@ def installation(description):
     with open('setup.cfg', 'w') as configfile:
         configfile.write(setup_cfg(PROJECT_NAME, description, os.getlogin()))
     os.system("pip install -e .")
+    print_finish("Added installation and packaging support")
        
 
 # git initialization
