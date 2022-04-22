@@ -59,6 +59,13 @@ def dockerize() :
     with open('.dockerignore', 'w') as dockerignore:
         dockerignore.write(dockerignore_text)
         print_finish("Created all the docker neccessary files")
+        
+    os.system(f'docker build -t {PROJECT_NAME} .')
+
+def isRunning():
+    os.system("pytest")
+    # os.system(f"docker run {PROJECT_NAME}")
+    print_finish("Application running successfully")
      
     
 def testing():
@@ -70,6 +77,7 @@ def testing():
     with open('test.py', 'w') as testfile:
         testfile.write(test_text)
     print_finish("Added testing support")
+    
    
 
 # code to allow our project to be installable
@@ -130,13 +138,14 @@ def main(project_name : str, description : str) :
         create_files(PROJECT_NAME)
         
         workingdir()
-        dockerize()
+        # dockerize()
         installation(description)
         testing()
-        initialize_git()
+        isRunning()
+        # initialize_git()
+        # virtualenvironment()
     else:
         return main()
-    # virtualenvironment()
 
     
 

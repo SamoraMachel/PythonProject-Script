@@ -3,7 +3,13 @@
 installation_config = """
 [build-system]
 requires = ["setuptools>=42.0", "wheel"]
-build-backend = "setuptools.build_meta
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "--cov=src"
+testpaths = [
+    "tests",    
+]
 """
 
 setup_code = """
