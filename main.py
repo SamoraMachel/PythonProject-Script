@@ -21,12 +21,13 @@ def print_finish(message : str):
     print(Fore.WHITE, end="")
 
 def create_files(project_name : str):
+    os.chdir(BASE_PATH)
     # Adding markdown files
-    with open('LICENSE.md', 'w') as license:
+    with open('LICENSE', 'w') as license:
         license.write(license_text)
         print_finish('Added GNU license')
         
-    with open('README.md', 'w') as readme:
+    with open('README', 'w') as readme:
         readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
         print_finish("Added a README file")
         
@@ -34,6 +35,7 @@ def create_files(project_name : str):
     
 # configure working directory
 def workingdir() :
+    os.chdir(BASE_PATH)
     os.system('touch requirements.txt')
     os.mkdir(os.path.join(BASE_PATH, "src"))
     os.chdir(os.path.join(BASE_PATH, "src"))
@@ -48,6 +50,7 @@ def workingdir() :
    
 # script for dockerizing our application
 def dockerize() :
+    os.chdir(BASE_PATH)
     # create the necessary files
     # create the docker files
     with open('Dockerfile', 'w') as docker:
@@ -59,6 +62,7 @@ def dockerize() :
      
     
 def testing():
+    os.chdir(BASE_PATH)
     # add test folder for test files
     os.system('mkdir tests')
     os.chdir(os.path.join(BASE_PATH, 'tests')) 
@@ -83,6 +87,7 @@ def installation(description):
 
 # git initialization
 def initialize_git() :
+    os.chdir(BASE_PATH)
    # create the git files
     with open('.gitignore', 'w') as gitignore:
         gitignore.write(gitignore_text)
@@ -97,6 +102,7 @@ def initialize_git() :
         
 # start virtual environment
 def virtualenvironment():
+    os.chdir(BASE_PATH)
     print_finish('Initializing your virtual environment')
     os.system('pipenv --python3')
     f = Figlet(font='slant')
@@ -108,18 +114,28 @@ def virtualenvironment():
 # main execution file 
 @click.command('create-project')
 @click.argument('project-name')
-@click.option("--git", help="Initialize git in the repository")
-def main(project_name : str) :
+@click.option("-d","--description", help="description about your project")
+def main(project_name : str, description : str) :
     """Generate a python project with default files setup"""
-    os.system(f'mkdir {project_name}')
+    
+    global PROJECT_NAME, BASE_PATH
+    if not os.path.exists(project_name):
+        os.mkdir(os.path.join(os.getcwd(), project_name))
     
     # set variables for runtime usage
     PROJECT_NAME = project_name
-    BASE_PATH = os.path.join(os.getcwd(), PROJECT_NAME)
+    BASE_PATH = os.path.join(os.getcwd(), project_name)
     
-    os.chdir(project_name)
-    create_files(project_name)
-    
+    if PROJECT_NAME != "" and BASE_PATH != "" :
+        create_files(PROJECT_NAME)
+        
+        workingdir()
+        dockerize()
+        installation(description)
+        testing()
+        initialize_git()
+    else:
+        return main()
     # virtualenvironment()
 
     

@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta
 """
 
 setup_code = """
-import setuptools import setup
+from setuptools import setup
 
 if __name__ == "__main__":
     setup()
@@ -21,7 +21,7 @@ name = {project}
 description = {desc}
 author = {author}
 license = GNU
-license = LICENSE.md
+license_file = LICENSE
 platform = unix, linux, win32
 classifiers = 
     Programming Language :: Python :: 3
