@@ -15,9 +15,9 @@ The script does the following :
 
 
 ## Requirement
-The project currently support `python 3` only. The project is also onlye supported on linux based system. Support for other operating system will be added later. </br>
+The project currently support `python 3` only. The project is also only supported on linux based system. Support for other operating system will be added later. </br>
 
-Thes user is also requrired to had `pipenv` installed within the system. 
+The user is also requrired to have `pipenv` installed within the system. 
 For pip installation procedure use the link below: 
 
 [pipenv installation guidek](https://pypi.org/project/pipenv/)
