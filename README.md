@@ -20,7 +20,7 @@ The project currently support `python 3` only. The project is also only supporte
 The user is also requrired to have `pipenv` installed within the system. 
 For pip installation procedure use the link below: 
 
-[pipenv installation guidek](https://pypi.org/project/pipenv/)
+[pipenv installation guide](https://pypi.org/project/pipenv/)
 
 ## Installation
 First install the requirements using
@@ -43,8 +43,8 @@ copy the ouptut and move to root using
 cd ~
 ```
 
-Now, we are going to modify the terminal file so that our terminal so that we can call our script file like a normal command.
-Depending on the type of terminal your using there is a file to modify the terminal , for example if your using `bash` then the file will be `.bashrc` or if your using `zsh` then the file will be `.zshrc`.<br/>
+Now, we are going to modify the shell file so that our terminal may recognize and call our script file like a normal command.
+Depending on the type of shell your using there is a file containing the codes for the shell your using, for example if your using `bash` then the file will be `.bashrc` or if your using `zsh` then the file will be `.zshrc`.<br/>
 Open the relevant file like so:
 
 ```bash
@@ -62,7 +62,7 @@ therefore your added line will look something of sort
 ```bash
 alias create-project="python3 /home/user/Document/create-script/main.py"
 ```
-
+Save the edits in the file using `Ctrl + o` then press `Enter` and exit the text editor using `Ctrl + x` </br>
 now you can close your terminal and then open it again so that the changes are effective.
 
 
