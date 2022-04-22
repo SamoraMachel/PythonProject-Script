@@ -1,7 +1,7 @@
 # Python Project Starter Script 
 
 This is a simple project that reduces redundacy while creating a new python project. 
-The project talormade based on my preferences when I start a new project.
+The project taloir made based on my preferences when I start a new project.
 
 The script does the following :
 
