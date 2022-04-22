@@ -6,8 +6,8 @@ The project taloir made based on my preferences when I start a new project.
 The script does the following :
 
     - project folder creation
-    - creations of related docker files and populates it according to my preference 
-    - creations of related git files and populates the gitignore with a generic template
+    - creation of related docker files and populates it according to my preference 
+    - creation of related git files and populates the gitignore with a generic template
     - creation of README file
     - creation of GNU license file
     - virtual environment creation
