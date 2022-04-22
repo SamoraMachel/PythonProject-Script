@@ -14,7 +14,7 @@ The script does the following :
     - test folder creation
 
 
-### Requirement
+## Requirement
 The project currently support `python 3` only. The project is also onlye supported on linux based system. Support for other operating system will be added later. </br>
 
 Thes user is also requrired to had `pipenv` installed within the system. 
@@ -22,7 +22,7 @@ For pip installation procedure use the link below:
 
 [pipenv installation guidek](https://pypi.org/project/pipenv/)
 
-### Installation
+## Installation
 First install the requirements using
 ```bash
 pip install -r requirements.txt 
@@ -66,7 +66,7 @@ alias create-project="python3 /home/user/Document/create-script/main.py"
 now you can close your terminal and then open it again so that the changes are effective.
 
 
-### Usage
+## Usage
 Once everything is complete, you can now create you project using the following syntax
 
 `create-project <project-name>`
