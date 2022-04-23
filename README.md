@@ -6,12 +6,12 @@ The project talormade based on my preferences when I start a new project.
 The script does the following :
 
     - project folder creation
-    - creations of related docker files and populates it according to my preference 
+    - dockerization
     - creations of related git files and populates the gitignore with a generic template
     - creation of README file
     - creation of GNU license file
     - virtual environment creation
-    - test folder creation
+    - creation of test 
 
 
 ## Requirement
@@ -20,8 +20,23 @@ The project currently support `python 3` only. The project is also onlye support
 Thes user is also requrired to had `pipenv` installed within the system. 
 For pip installation procedure use the link below: 
 
-[pipenv installation guidek](https://pypi.org/project/pipenv/)
-
+- [pipenv](https://pypi.org/project/pipenv/)
+    > Installed using
+    ```bash
+    pip install --user pipenv
+    ```
+- [pytest]()
+    > Installed using 
+    ```bash
+    pip install -U pytest
+    ```
+- [pytest-cov]()
+    > Installed using 
+    ```bash
+    pip install pytest-cov
+    ```
+- [docker](https://docs.docker.com/get-docker/)
+- [git](https://git-scm.com/downloads)
 ## Installation
 First install the requirements using
 ```bash
@@ -54,13 +69,13 @@ nano .bashrc
 this will open a terminal based text editor, you will then navigate to the end of the file and add the following
 
 ```bash
-alias create-project="python3 <path you had copied>/main.py"
+alias project="python3 <path you had copied>/main.py"
 ```
 
 therefore your added line will look something of sort
 
 ```bash
-alias create-project="python3 /home/user/Document/create-script/main.py"
+alias project="python3 /home/user/Document/create-script/main.py"
 ```
 
 now you can close your terminal and then open it again so that the changes are effective.
@@ -69,12 +84,12 @@ now you can close your terminal and then open it again so that the changes are e
 ## Usage
 Once everything is complete, you can now create you project using the following syntax
 
-`create-project <project-name>`
+`project <project-name> -d <project-description>`
 
 therefore is will look something of sort
 
 ```bash
-create-project Test
+project Test -d "Samople project"
 ```
 
 the execution of the program should produce a similar output as below
