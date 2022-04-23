@@ -137,12 +137,12 @@ def main(project_name : str, description : str) :
         create_files(PROJECT_NAME)
         
         workingdir()
-        # dockerize()
+        dockerize()
         installation(description)
         testing()
         isRunning()
-        # initialize_git()
-        # virtualenvironment()
+        initialize_git()
+        virtualenvironment()
     else:
         return main()
 
