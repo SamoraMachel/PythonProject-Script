@@ -1,6 +1,7 @@
 # configuration for making the file installable
 
 installation_config = """
+
 [build-system]
 requires = ["setuptools>=42.0", "wheel"]
 build-backend = "setuptools.build_meta"
@@ -8,8 +9,22 @@ build-backend = "setuptools.build_meta"
 [tool.pytest.ini_options]
 addopts = "--cov=src"
 testpaths = [
-    "tests",    
+    "tests",
 ]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
 """
 
 setup_code = """
@@ -39,9 +54,9 @@ classifiers =
     
 [options]
 packages = src
+install_requires = 
+    requests>=2
 python_requires = >=3.*
-package_dir = 
-    =src
 zip_safe = no
     
 """

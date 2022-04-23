@@ -64,8 +64,7 @@ def dockerize() :
 
 def isRunning():
     os.system("pytest")
-    # os.system(f"docker run {PROJECT_NAME}")
-    print_finish("Application running successfully")
+    # os.system(f"docker run {PROJECT_NAME}")")
      
     
 def testing():
@@ -74,7 +73,7 @@ def testing():
     os.system('mkdir tests')
     os.chdir(os.path.join(BASE_PATH, 'tests')) 
     os.system('touch __init__.py')
-    with open('test.py', 'w') as testfile:
+    with open('test_main.py', 'w') as testfile:
         testfile.write(test_text)
     print_finish("Added testing support")
     

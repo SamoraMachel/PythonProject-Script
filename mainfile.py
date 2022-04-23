@@ -1,7 +1,7 @@
 mainfile_text = """
 def main():
-    print("Hello world")
+    return "Hello world"
 
 if __name__ == '__main__':
-    main()
+   print(main())
 """
