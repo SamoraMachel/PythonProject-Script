@@ -64,7 +64,7 @@ def dockerize() :
 
 def isRunning():
     os.system("pytest")
-    # os.system(f"docker run {PROJECT_NAME}")")
+    os.system(f"docker run {PROJECT_NAME}")
      
     
 def testing():
