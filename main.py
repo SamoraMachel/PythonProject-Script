@@ -113,7 +113,7 @@ def virtualenvironment():
     print_finish('Initializing your virtual environment')
     os.system('pipenv --python3')
     f = Figlet(font='slant')
-    print(Fore.YELLOW + f.renderText(f'created {PROJECT_NAME}'))
+    print(Fore.YELLOW + f.renderText(f'{PROJECT_NAME}'))
     os.system('pipenv shell')
     
     
