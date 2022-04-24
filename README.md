@@ -89,7 +89,7 @@ Once everything is complete, you can now create you project using the following 
 therefore is will look something of sort
 
 ```bash
-project Test -d "Samople project"
+project Test -d "Sample project"
 ```
 
 the execution of the program should produce a similar output as below
