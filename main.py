@@ -20,15 +20,15 @@ def print_finish(message : str):
     print(Fore.YELLOW + (f"{TICK_SYMBOL} {message}"))
     print(Fore.WHITE, end="")
 
-def create_files(project_name : str):
+def create_files(project_name : str, description : str):
     os.chdir(BASE_PATH)
     # Adding markdown files
-    with open('LICENSE', 'w') as license:
+    with open('LICENSE.md', 'w') as license:
         license.write(license_text)
         print_finish('Added GNU license')
         
-    with open('README', 'w') as readme:
-        readme.writelines([f"# {project_name}", '\n' "Add a brief description about the project"])
+    with open('README.md', 'w') as readme:
+        readme.writelines([f"# {project_name}", '\n', description])
         print_finish("Added a README file")
         
 
@@ -80,7 +80,7 @@ def testing():
    
 
 # code to allow our project to be installable
-def installation(description):
+def     installation(description):
     os.chdir(BASE_PATH)
     with open('pyproject.toml', 'w') as installationfile:
         installationfile.write(installation_config)
@@ -122,7 +122,7 @@ def virtualenvironment():
 @click.command('create-project')
 @click.argument('project-name')
 @click.option("-d","--description", help="description about your project")
-def main(project_name : str, description : str) :
+def main(project_name : str, description : str = "") :
     """Generate a python project with default files setup"""
     
     global PROJECT_NAME, BASE_PATH
@@ -134,7 +134,7 @@ def main(project_name : str, description : str) :
     BASE_PATH = os.path.join(os.getcwd(), project_name)
     
     if PROJECT_NAME != "" and BASE_PATH != "" :
-        create_files(PROJECT_NAME)
+        create_files(PROJECT_NAME, description)
         
         workingdir()
         dockerize()
